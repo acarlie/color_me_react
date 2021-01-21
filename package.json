@@ -1,6 +1,7 @@
 {
   "name": "color-me-react",
   "version": "0.1.0",
+  "homepage": "https://acarlie.github.io/color_me_react",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.9",

@@ -1,0 +1,119 @@
+{
+    "colors": [
+        {
+            "name": "seafoam",
+            "colorMain": "BDFFF3",
+            "colorTwo": "74,194,154"
+        },
+        {
+            "name": "magenta",
+            "colorMain": "f953c6",
+            "colorTwo": "185,29,115"
+        },
+        {
+            "name": "lavender",
+            "colorMain": "e1ceff",
+            "colorTwo": "210,119,200"
+        },
+        {
+            "name": "aqua",
+            "colorMain": "A6FFCB",
+            "colorTwo": "18,216,250"
+        },
+        {
+            "name": "purple",
+            "colorMain": "E100FF",
+            "colorTwo": "127,0,255"
+        },
+        {
+            "name": "lime",
+            "colorMain": "DCE35B",
+            "colorTwo": "69,182,73"
+        },
+        {
+            "name": "citrus",
+            "colorMain": "FDC830",
+            "colorTwo": "243,115,53"
+        },
+        {
+            "name": "maroon",
+            "colorMain": "DA4453",
+            "colorTwo": "137,33,107"
+        },
+        {
+            "name": "peach",
+            "colorMain": "FFC371",
+            "colorTwo": "255,95,109"
+        },
+        {
+            "name": "violet",
+            "colorMain": "a415e9",
+            "colorTwo": "69,34,173"
+        },
+        {
+            "name": "crimson",
+            "colorMain": "e9152d",
+            "colorTwo": "173,34,73"
+        },
+        {
+            "name": "bubblegum",
+            "colorMain": "ff8ed0",
+            "colorTwo": "228,90,203"
+        },
+        {
+            "name": "rose",
+            "colorMain": "ffaddd",
+            "colorTwo": "255,110,139"
+        },
+        {
+            "name": "avocado",
+            "colorMain": "d9e45a",
+            "colorTwo": "157,178,48"
+        },
+        {
+            "name": "orange",
+            "colorMain": "ff9b39",
+            "colorTwo": "228,88,44"
+        },
+        {
+            "name": "turquoise",
+            "colorMain": "63ecd3",
+            "colorTwo": "21,161,162"
+        },
+        {
+            "name": "gold",
+            "colorMain": "ffdf7a",
+            "colorTwo": "255,162,27"
+        },
+        {
+            "name": "sky",
+            "colorMain": "13eeff",
+            "colorTwo": "122,167,255"
+        },
+        {
+            "name": "chartreuse",
+            "colorMain": "ffef5f",
+            "colorTwo": "170,194,52"
+        },
+        {
+            "name": "slate",
+            "colorMain": "bebebe",
+            "colorTwo": "62,88,124"
+        },
+        {
+            "name": "melon",
+            "colorMain": "baffd8",
+            "colorTwo": "12,207,138"
+        },
+        {
+            "name": "cherry",
+            "colorMain": "ef473a",
+            "colorTwo": "203,45,62"
+        },
+        {
+            "name": "ultramarine",
+            "colorMain": "2e86ff",
+            "colorTwo": "31,18,218"
+        }
+    ]
+}

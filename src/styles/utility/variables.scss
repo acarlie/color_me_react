@@ -1,12 +1,10 @@
-$g-color-primary: #e7004c;
-$g-color-secondary: #77898d;
-$g-color-neutral-light: #eee;
-$g-color-neutral-dark: #222;
+$g-color-neutral-light: rgba(255, 255, 255, .9);
 $g-color-neutral: #ccc;
+$g-color-neutral-dark: #222;
 
-$g-font-family-text: 'Montserrat',
+$g-font-family-text: 'Oswald',
 sans-serif;
-$g-font-family-heading: 'Montserrat',
+$g-font-family-heading: 'Oswald',
 sans-serif;
 
 $g-line-height-text: 1.5;
@@ -25,4 +23,4 @@ $g-space-one-and-half: 1.5rem;
 $g-space-two: 2rem;
 $g-space-three: 3rem;
 
-$g-focus-ring: 0 0 0 1px $g-color-primary;
+$g-focus-ring: 0 0 0 1px #000;

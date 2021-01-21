@@ -33,7 +33,7 @@
 }
 
 
-@mixin text{
+@mixin text {
     color: $g-color-text;
     font-family: $g-font-family-text;
     line-height: $g-line-height-text;
@@ -44,14 +44,14 @@
     font-size: 1.25rem;
 }
 
-@mixin text-medium{
+@mixin text-medium {
     @include text;
     font-size: 1rem;
 }
 
 @mixin text-small {
     @include text;
-    font-size:.875rem;
+    font-size: .875rem;
 }
 
 @mixin text-xsmall {

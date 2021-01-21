@@ -1,0 +1,10 @@
+@import './../utility/variables.scss';
+@import './../utility/mixins.scss';
+
+.main {
+    @include heading-1;
+}
+
+.small {
+    @include heading-5;
+}
