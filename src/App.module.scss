@@ -1,0 +1,17 @@
+@import './styles/utility/variables.scss';
+@import './styles/utility/mixins.scss';
+
+html {
+  @include fluid-type($g-breakpoint-mobile, $g-breakpoint-desktop, 14px, 18px);
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: $g-font-family-text;
+  font-weight: $g-font-weight-default;
+  line-height: $g-line-height-text;
+}
+
+.app {
+  color: black;
+}
