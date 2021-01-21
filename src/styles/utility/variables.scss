@@ -1,23 +1,14 @@
-// Colors
 $g-color-primary: #e7004c;
 $g-color-secondary: #77898d;
-$g-color-neutral-lt: #E4E4E4;
-$g-color-neutral-med-dk: #333333;
-$g-color-neutral-dk: #191919;
+$g-color-neutral-light: #eee;
+$g-color-neutral-dark: #222;
+$g-color-neutral: #ccc;
 
-$g-color-text: $g-color-neutral-med-dk;
-$g-color-text-on-dk: $g-color-neutral-lt;
-$g-color-heading: $g-color-secondary;
-$g-color-heading-on-dk:$g-color-neutral-lt;
-
-$g-color-bg-dk: $g-color-neutral-dk;
-$g-color-bg-lt: #FFFFFF;
-
-$g-font-size: 16px;
 $g-font-family-text: 'Montserrat',
 sans-serif;
 $g-font-family-heading: 'Montserrat',
 sans-serif;
+
 $g-line-height-text: 1.5;
 $g-line-height-heading: 1.25;
 $g-font-weight-bold: 700;
