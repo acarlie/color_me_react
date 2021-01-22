@@ -3,6 +3,8 @@
 
 .main {
     @include heading-1;
+    // color: $g-color-neutral-light;
+    letter-spacing: 2px;
 }
 
 .small {

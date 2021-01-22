@@ -31,22 +31,26 @@ class App extends Component {
             correctArr: [],
             wins: 0,
             guess: '',
-            guessesArr: [],
             puzzle: '',
-            puzzleArr: []
+            puzzleArr: [],
+            puzzlesArr: []
         };
     }
 
-    setPuzzle = (puzzle) => {
-        const puzzleArr = [...new Set(puzzle.split(''))];
-        this.setState({
-            puzzle,
-            puzzleArr
-        });
+    componentDidMount() {
+        this.setPuzzle(colors);
     }
 
-    checkGuess = (guess) => {
-        // this.state.
+    setPuzzle = (puzzlesArr) => {
+        const num = Math.round(Math.random() * (puzzlesArr.length - 1));
+        const puzzle = puzzlesArr[num].name.toLowerCase();
+        const puzzleArr = [...new Set(puzzle.split(''))];
+        const remaining = puzzlesArr.filter(x => x.name !== puzzle.name);
+        this.setState({
+            puzzle,
+            puzzleArr,
+            puzzlesArr: remaining
+        });
     }
 
     setUnique = (guess, arr) => {
@@ -57,51 +61,60 @@ class App extends Component {
         return arr;
     }
 
-    componentDidMount() {
-        this.setPuzzle(colors[0].name);
-    }
-
     handleChange = (event) => {
         this.setState({
-            guess: event.target.value
+            guess: event.target.value.toLowerCase()
         });
     }
 
-    setRemaining = (guess, uniqueIncorrect, unique) => {
+    finalWin = () => {
+        // open win modal
+    }
 
+    win = () => {
+        this.setState({
+            wins: this.state.wins + 1
+        });
+        this.setPuzzle(this.state.puzzlesArr);
+        this.reset();
+    }
+
+    lose = () => {
+        // game over modal (full screen modal)
+    }
+
+    reset = () => {
+        this.setState({
+            remaining: 5,
+            incorrectArr: [],
+            correctArr: [],
+            guess: ''
+        });
     }
 
     onFormSubmit = (e) => {
         e.preventDefault();
-        console.log('submit');
-        const guessesArr = this.setUnique(this.state.guess, this.state.guessesArr);
-        if (this.state.puzzleArr.includes(this.state.guess)) {
-            // Correct guess
-            const correctArr = this.setUnique(this.state.guess, this.state.correctArr);
+        const { guess } = this.state;
+
+        if (this.state.puzzleArr.includes(guess)) {
+            const correctArr = this.setUnique(guess, this.state.correctArr);
 
             if (correctArr.length === this.state.puzzleArr.length) {
-                // win
-                console.log('WINNNN!!!');
-                // reset
+                this.win();
             } else {
                 this.setState({
-                    guessesArr,
                     correctArr,
                     guess: ''
                 });
             }
         } else {
-            // Incorrect guess
-            const incorrectArr = this.setUnique(this.state.guess, this.state.incorrectArr);
-            const remaining = this.state.incorrectArr.includes(this.state.guess) ? this.state.remaining : this.state.remaining - 1;
-            console.log(this.state.incorrectArr.includes(this.state.guess));
+            const incorrectArr = this.setUnique(guess, this.state.incorrectArr);
+            const remaining = this.state.incorrectArr.includes(guess) ? this.state.remaining : this.state.remaining - 1;
+
             if (remaining === -1) {
-                // Lose
                 console.log('Lose');
-                // Reset
             } else {
                 this.setState({
-                    guessesArr,
                     remaining,
                     incorrectArr,
                     guess: ''
@@ -120,7 +133,7 @@ class App extends Component {
                     <section className={utility.sr_only}>
                         <h2>About color me</h2>
                         <p>
-                            Color me is a word guessing game. The words are all color names. A hint about the color family will be given at the beginning of each round. Use the input box to guess a letter, the blanks will fill as correct guessesArr are made. After the round is finished a new round will start until there are no puzzles remaining.
+                            Color me is a word guessing game. The words are all color names. A hint about the color family will be given at the beginning of each round. Use the input box to guess a letter, the blanks will fill as correct guesses are made. After the round is finished a new round will start until there are no puzzles remaining.
                         </p>
                     </section>
                     <section>
