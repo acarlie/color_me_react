@@ -1,0 +1,56 @@
+.modal {
+    overflow: hidden;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 0;
+    width: 90%;
+    min-height: 12rem;
+
+    @media screen and (min-width: 512px),
+    print {
+        max-width: 50%;
+    }
+
+    @media screen and (min-width: 768px),
+    print {
+        max-width: 40%;
+    }
+
+    @media screen and (min-width: 960px),
+    print {
+        max-width: 30%;
+    }
+}
+
+.scrim {
+    position: fixed;
+    background-color: rgba(0, 0, 0, .50);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+}
+
+.inner {
+    position: relative;
+}
+
+.desc {
+    margin: 1rem 0 0 0;
+}
+
+.footer {
+    margin: 2rem 0 0 0;
+}
+
+.open {
+    display: block;
+}
+
+.closed {
+    display: none;
+}

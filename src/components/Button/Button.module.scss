@@ -1,0 +1,24 @@
+.button {
+    padding: .75em;
+    font-size: 1em;
+    text-transform: uppercase;
+    // font-family: var(--headings-font);
+    font-weight: bold;
+    // box-shadow: var(--shadow);
+    // border-radius: var(--radius);
+    transition: background-color .25s;
+
+    &:hover {
+        background-color: #eee;
+    }
+
+    &:focus {
+        box-shadow: inset 0 0 0 3px #333;
+    }
+
+}
+
+.full_width {
+    display: block;
+    width: 100%;
+}

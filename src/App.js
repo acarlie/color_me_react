@@ -8,7 +8,7 @@ import { colors } from './data/colors.json';
 /**
  * Components
  */
-import Letter from './components/Letter/Letter.js';
+import Letter from './components/Letter/Letter';
 
 /**
  * Styles
@@ -16,13 +16,14 @@ import Letter from './components/Letter/Letter.js';
 import styles from './App.module.scss';
 import utility from './styles/modules/Utility.module.scss';
 import heading from './styles/modules/Heading.module.scss';
+import Modal from './components/Modal/Modal';
 // import text from './styles/modules/Text.module.scss';
 
 class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            hint: 'The color family is purple',
+            hint: '',
             loaded: false,
             loader: '',
             notification: 'You won the round',
@@ -35,6 +36,7 @@ class App extends Component {
             puzzleArr: [],
             puzzlesArr: []
         };
+        this.modalRef = React.createRef();
     }
 
     componentDidMount() {
@@ -43,13 +45,15 @@ class App extends Component {
 
     setPuzzle = (puzzlesArr) => {
         const num = Math.round(Math.random() * (puzzlesArr.length - 1));
-        const puzzle = puzzlesArr[num].name.toLowerCase();
+        const { name, hint } = puzzlesArr[num];
+        const puzzle = name.toLowerCase();
         const puzzleArr = [...new Set(puzzle.split(''))];
         const remaining = puzzlesArr.filter(x => x.name !== puzzle.name);
         this.setState({
             puzzle,
             puzzleArr,
-            puzzlesArr: remaining
+            puzzlesArr: remaining,
+            hint
         });
     }
 
@@ -72,6 +76,7 @@ class App extends Component {
     }
 
     win = () => {
+        this.modalRef.current.openDialog();
         this.setState({
             wins: this.state.wins + 1
         });
@@ -123,6 +128,10 @@ class App extends Component {
         }
     }
 
+    modalCloseHandler = () => {
+        console.log('Modal close');
+    }
+
     render() {
         return (
             <div>
@@ -137,6 +146,9 @@ class App extends Component {
                         </p>
                     </section>
                     <section>
+                        <Modal ref={this.modalRef} onClose={this.modalCloseHandler} title="Modal title" close="Close modal">
+                            Content
+                        </Modal>
                         <h2 className={utility.sr_only}>The game</h2>
 
                         <div className={utility.sr_only} aria-live="polite" role="status">
@@ -145,7 +157,7 @@ class App extends Component {
                                 `Notification: ${this.state.notification}`
                             }
                         </div>
-                        <div className={utility.sr_only} aria-live="polite" role="status">
+                        <div aria-live="polite" role="status">
                             {
                                 this.state.hint &&
                                 `Hint: ${this.state.hint}`
