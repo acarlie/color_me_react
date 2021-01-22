@@ -3,117 +3,140 @@
         {
             "name": "seafoam",
             "colorMain": "BDFFF3",
-            "colorTwo": "74,194,154"
+            "colorTwo": "74,194,154",
+            "hint": "This color name is something you'd walk through at the beach."
         },
         {
             "name": "magenta",
             "colorMain": "f953c6",
-            "colorTwo": "185,29,115"
+            "colorTwo": "185,29,115",
+            "hint": "The color is part of the acronym C M Y K."
         },
         {
             "name": "lavender",
             "colorMain": "e1ceff",
-            "colorTwo": "210,119,200"
+            "colorTwo": "210,119,200",
+            "hint": "This purple is the name of a flower."
         },
         {
             "name": "aqua",
             "colorMain": "A6FFCB",
-            "colorTwo": "18,216,250"
+            "colorTwo": "18,216,250",
+            "hint": "This bright blue starts and ends with the same letter."
         },
         {
             "name": "purple",
             "colorMain": "E100FF",
-            "colorTwo": "127,0,255"
+            "colorTwo": "127,0,255",
+            "hint": "This color can be made from red and blue."
         },
         {
             "name": "lime",
             "colorMain": "DCE35B",
-            "colorTwo": "69,182,73"
+            "colorTwo": "69,182,73",
+            "hint": "This color is a type of citrus."
         },
         {
             "name": "citrus",
             "colorMain": "FDC830",
-            "colorTwo": "243,115,53"
+            "colorTwo": "243,115,53",
+            "hint": "Oranges, limes, and lemons are a type of this."
         },
         {
             "name": "maroon",
             "colorMain": "DA4453",
-            "colorTwo": "137,33,107"
+            "colorTwo": "137,33,107",
+            "hint": "Ron Weasley always received this color sweater from Mrs. Weasley."
         },
         {
             "name": "peach",
             "colorMain": "FFC371",
-            "colorTwo": "255,95,109"
+            "colorTwo": "255,95,109",
+            "hint": "The color name is the state fruit of georgia."
         },
         {
             "name": "violet",
             "colorMain": "a415e9",
-            "colorTwo": "69,34,173"
+            "colorTwo": "69,34,173",
+            "hint": "This color is the purple part of a rainbow."
         },
         {
-            "name": "crimson",
+            "name": "scarlet",
             "colorMain": "e9152d",
-            "colorTwo": "173,34,73"
+            "colorTwo": "173,34,73",
+            "hint": "A gryffindor house color."
         },
         {
             "name": "bubblegum",
             "colorMain": "ff8ed0",
-            "colorTwo": "228,90,203"
+            "colorTwo": "228,90,203",
+            "hint": "A type of pink and also a type of candy."
         },
         {
             "name": "rose",
             "colorMain": "ffaddd",
-            "colorTwo": "255,110,139"
+            "colorTwo": "255,110,139",
+            "hint": "A flower often given to a significant other."
         },
         {
             "name": "avocado",
             "colorMain": "d9e45a",
-            "colorTwo": "157,178,48"
+            "colorTwo": "157,178,48",
+            "hint": "This color name is a type of fruit, often favored by Millennials."
         },
         {
             "name": "orange",
             "colorMain": "ff9b39",
-            "colorTwo": "228,88,44"
+            "colorTwo": "228,88,44",
+            "hint": "This fruit is made into a popular juice."
         },
         {
             "name": "turquoise",
             "colorMain": "63ecd3",
-            "colorTwo": "21,161,162"
+            "colorTwo": "21,161,162",
+            "hint": "This blue green is a stone often used in jewelry."
         },
         {
             "name": "gold",
             "colorMain": "ffdf7a",
-            "colorTwo": "255,162,27"
+            "colorTwo": "255,162,27",
+            "hint": "The color name is a type of metal."
         },
         {
             "name": "sky",
             "colorMain": "13eeff",
-            "colorTwo": "122,167,255"
+            "colorTwo": "122,167,255",
+            "hint": "This blue is where clouds are found."
         },
         {
             "name": "chartreuse",
             "colorMain": "ffef5f",
-            "colorTwo": "170,194,52"
+            "colorTwo": "170,194,52",
+            "hint": "This green is also the name of a French liquor."
         },
         {
             "name": "slate",
             "colorMain": "bebebe",
-            "colorTwo": "62,88,124"
+            "colorTwo": "62,88,124",
+            "hint": "This grey is a type of rock."
         },
         {
             "name": "melon",
             "colorMain": "baffd8",
-            "colorTwo": "12,207,138"
+            "colorTwo": "12,207,138",
+            "hint": "A type of fruit, often cut into wedges."
         },
         {
             "name": "cherry",
             "colorMain": "ef473a",
-            "colorTwo": "203,45,62"
+            "colorTwo": "203,45,62",
+            "hint": "The color name is a red stone fruit."
         },
         {
             "name": "ultramarine",
             "colorMain": "2e86ff",
-            "colorTwo": "31,18,218"
+            "colorTwo": "31,18,218",
+            "hint": "An ultra blue color."
         }
     ]
 }
