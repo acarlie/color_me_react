@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 /**
  * Data
  */
-// import { colors } from './data/colors.json';
+import { colors } from './data/colors.json';
 
 /**
  * Components
@@ -22,20 +22,43 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            guesses: [],
             hint: 'The color family is purple',
             loaded: false,
             loader: '',
             notification: 'You won the round',
             remaining: 5,
+            incorrectArr: [],
+            correctArr: [],
             wins: 0,
             guess: '',
-            puzzle: 'lavender'
+            guessesArr: [],
+            puzzle: '',
+            puzzleArr: []
         };
     }
 
-    componentDidMount() {
+    setPuzzle = (puzzle) => {
+        const puzzleArr = [...new Set(puzzle.split(''))];
+        this.setState({
+            puzzle,
+            puzzleArr
+        });
+    }
 
+    checkGuess = (guess) => {
+        // this.state.
+    }
+
+    setUnique = (guess, arr) => {
+        if (!arr.includes(guess)) {
+            return arr.concat(guess);
+        }
+
+        return arr;
+    }
+
+    componentDidMount() {
+        this.setPuzzle(colors[0].name);
     }
 
     handleChange = (event) => {
@@ -44,16 +67,47 @@ class App extends Component {
         });
     }
 
+    setRemaining = (guess, uniqueIncorrect, unique) => {
+
+    }
+
     onFormSubmit = (e) => {
         e.preventDefault();
         console.log('submit');
-        const guesses = this.state.guesses.concat(this.state.guess);
-        const remaining = this.state.puzzle.includes(this.state.guess) ? this.state.remaining : this.state.remaining - 1;
-        this.setState({
-            guesses,
-            guess: '',
-            remaining: remaining
-        });
+        const guessesArr = this.setUnique(this.state.guess, this.state.guessesArr);
+        if (this.state.puzzleArr.includes(this.state.guess)) {
+            // Correct guess
+            const correctArr = this.setUnique(this.state.guess, this.state.correctArr);
+
+            if (correctArr.length === this.state.puzzleArr.length) {
+                // win
+                console.log('WINNNN!!!');
+                // reset
+            } else {
+                this.setState({
+                    guessesArr,
+                    correctArr,
+                    guess: ''
+                });
+            }
+        } else {
+            // Incorrect guess
+            const incorrectArr = this.setUnique(this.state.guess, this.state.incorrectArr);
+            const remaining = this.state.incorrectArr.includes(this.state.guess) ? this.state.remaining : this.state.remaining - 1;
+            console.log(this.state.incorrectArr.includes(this.state.guess));
+            if (remaining === -1) {
+                // Lose
+                console.log('Lose');
+                // Reset
+            } else {
+                this.setState({
+                    guessesArr,
+                    remaining,
+                    incorrectArr,
+                    guess: ''
+                });
+            }
+        }
     }
 
     render() {
@@ -66,7 +120,7 @@ class App extends Component {
                     <section className={utility.sr_only}>
                         <h2>About color me</h2>
                         <p>
-                            Color me is a word guessing game. The words are all color names. A hint about the color family will be given at the beginning of each round. Use the input box to guess a letter, the blanks will fill as correct guesses are made. After the round is finished a new round will start until there are no puzzles remaining.
+                            Color me is a word guessing game. The words are all color names. A hint about the color family will be given at the beginning of each round. Use the input box to guess a letter, the blanks will fill as correct guessesArr are made. After the round is finished a new round will start until there are no puzzles remaining.
                         </p>
                     </section>
                     <section>
@@ -100,8 +154,9 @@ class App extends Component {
                                     Color Me
                                     <span>
                                         {
+                                            this.state.puzzle &&
                                             this.state.puzzle.split('').map((letter, i) => {
-                                                return <Letter key={i} letter={letter} guessed={this.state.guesses.includes(letter)} />;
+                                                return <Letter key={i} letter={letter} guessed={this.state.correctArr.includes(letter)} />;
                                             })
                                         }
                                     </span>
@@ -118,10 +173,8 @@ class App extends Component {
                                     <p><strong>Wins: </strong>{this.state.wins}</p>
                                     <p><strong>Guesses: </strong>
                                         {
-                                            this.state.guesses.length > 0 &&
-                                            this.state.guesses.filter((letter) => {
-                                                return !this.state.puzzle.includes(letter);
-                                            })
+                                            this.state.incorrectArr.length > 0 &&
+                                            this.state.incorrectArr.join(' ')
                                         }
                                     </p>
                                 </div>
