@@ -33,31 +33,62 @@ class App extends Component {
             wins: 0,
             guess: '',
             puzzle: '',
+            colors: {},
             puzzleArr: [],
-            puzzlesArr: []
+            puzzlesArr: [],
+            win: false
         };
         this.modalRef = React.createRef();
     }
 
     componentDidMount() {
-        this.setPuzzle(colors);
+        this.newGame(colors);
     }
 
-    setPuzzle = (puzzlesArr) => {
-        const num = Math.round(Math.random() * (puzzlesArr.length - 1));
-        const { name, hint } = puzzlesArr[num];
-        const puzzle = name.toLowerCase();
-        const puzzleArr = [...new Set(puzzle.split(''))];
-        console.log(puzzleArr);
-        const remaining = puzzlesArr.filter(x => x.name !== puzzle);
-        console.log(remaining);
+    newGame = (arr) => {
         this.setState({
-            puzzle,
-            puzzleArr,
-            puzzlesArr: remaining,
-            hint
+            ...this.setPuzzle(arr),
+            remaining: 5,
+            incorrectArr: [],
+            correctArr: [],
+            guess: '',
+            win: false
         });
     }
+
+    setPuzzle = (arr) => {
+        const num = Math.round(Math.random() * (arr.length - 1));
+        const { name, hint, colorMain, colorTwo } = arr[num];
+        const puzzle = name.toLowerCase();
+        const puzzleArr = [...new Set(puzzle.split(''))];
+        const puzzlesArr = arr.filter(x => x.name !== puzzle);
+        const colors = { colorMain, colorTwo };
+
+        return { puzzle, puzzleArr, puzzlesArr, hint, colors };
+    }
+
+    // colorChange (color, change) {
+    //     var oldColorRGB = color.split(',');
+    //     var newColorRGB = [];
+    //     oldColorRGB.forEach(function (i) {
+    //       newColorRGB.push(Math.round(parseInt(i) * change));
+    //     });
+    //     return 'rgb(' + newColorRGB.toString() + ')';
+    //   },
+    //   styles (colorOne, colorTwo, colorThree, colorFour) {
+    //     // main background
+    //     this.body.style.background = 'linear-gradient(to right,' + colorOne + ',' + colorTwo + ')';
+    //     // h1 text shadow
+    //     this.headingText.style.textShadow = '2px 4px 6px ' + colorTwo;
+    //     // result container
+    //     this.resultsCont.style.boxShadow = '1px 3px 16px ' + colorTwo + ' inset, -2px -2px 8px ' + colorOne + ', 2px 1px 2px ' + colorOne;
+    //     this.resultsCont.style.color = colorFour;
+    //     this.resultsCont.style.backgroundColor = colorThree;
+    //     // borders in result container
+    //     this.border.forEach(function (i) {
+    //       i.style.borderTop = '1.5px solid ' + colorTwo;
+    //     });
+    //   },
 
     setUnique = (guess, arr) => {
         if (!arr.includes(guess)) {
@@ -67,45 +98,36 @@ class App extends Component {
         return arr;
     }
 
-    handleChange = (event) => {
-        this.setState({
-            guess: event.target.value.toLowerCase()
-        });
-    }
-
     finalWin = () => {
-        // open win modal
-        this.modalRef.current.openDialog();
+        this.setState({
+            win: true
+        }, () => {
+            this.modalRef.current.openDialog();
+        });
     }
 
     win = () => {
         this.setState({
             wins: this.state.wins + 1
         });
-        this.setPuzzle(this.state.puzzlesArr);
-        this.newGame();
+        this.newGame(this.state.puzzlesArr);
     }
 
     lose = () => {
         this.modalRef.current.openDialog();
-        // game over modal (full screen modal)
     }
 
     resetGame = () => {
         this.setState({
             puzzlesArr: colors
         }, () => {
-            this.newGame();
-            this.setPuzzle(this.state.puzzlesArr);
+            this.newGame(this.state.puzzlesArr);
         });
     }
 
-    newGame = () => {
+    handleChange = (event) => {
         this.setState({
-            remaining: 5,
-            incorrectArr: [],
-            correctArr: [],
-            guess: ''
+            guess: event.target.value.toLowerCase()
         });
     }
 
@@ -123,10 +145,8 @@ class App extends Component {
 
             if (correctArr.length === this.state.puzzleArr.length) {
                 if (this.state.puzzlesArr.length === 0) {
-                    console.log('final win');
                     this.finalWin();
                 } else {
-                    console.log('win');
                     this.win();
                 }
             }
