@@ -191,7 +191,7 @@ class App extends Component {
                                 `Notification: ${this.state.notification}`
                             }
                         </div>
-                        <div aria-live="polite" role="status">
+                        <div className={utility.sr_only} aria-live="polite" role="status">
                             {
                                 this.state.hint &&
                                 `Hint: ${this.state.hint}`
@@ -207,11 +207,13 @@ class App extends Component {
                         <div id="finalWrapper" class="fixed-wrap">
 
                         </div> */}
-                        <div class="container">
-                            <div>
+                        <div className={styles.wrapper}>
+                            <div className={styles.container}>
                                 <h3 className={heading.main} aria-live="polite" role="status">
-                                    Color Me
-                                    <span>
+                                    <span className={styles.no_wrap}>
+                                        Color Me
+                                    </span>
+                                    <span className={styles.no_wrap}>
                                         {
                                             this.state.puzzle &&
                                             this.state.puzzle.split('').map((letter, i) => {
@@ -223,7 +225,7 @@ class App extends Component {
                                 </h3>
                                 <form onSubmit={(e) => this.onFormSubmit(e)}>
                                     <label className={utility.sr_only} for="input">Guess a letter</label>
-                                    <input id="input" type="text" placeholder="Guess a letter..." maxlength="1" value={this.state.guess} onChange={this.handleChange} />
+                                    <input id="input" className={styles.input} type="text" placeholder="Guess a letter..." maxlength="1" value={this.state.guess} onChange={this.handleChange} />
                                     <input className={utility.sr_only} type="submit" value="Submit guess" />
                                 </form>
 

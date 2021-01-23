@@ -1,8 +1,9 @@
 @import './styles/utility/variables.scss';
 @import './styles/utility/mixins.scss';
+@import './styles/utility/reset.scss';
 
 html {
-    @include fluid-type($g-breakpoint-mobile, $g-breakpoint-desktop, 14px, 18px);
+    @include fluid-type($g-breakpoint-mobile, $g-breakpoint-laptop, 14px, 18px);
     scroll-behavior: smooth;
 }
 
@@ -20,6 +21,32 @@ body {
     box-sizing: border-box;
 }
 
+.wrapper {
+    min-height: 100vh;
+    padding: $g-space-one;
+
+    @media screen and (min-width: $g-breakpoint-laptop),
+    print {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+.container {}
+
+.input {
+    @include text-medium;
+    display: block;
+    width: 100%;
+    border-radius: $g-border-radius;
+    padding: $g-space-half;
+    border: 1px solid black;
+}
+
+.no_wrap {
+    white-space: nowrap;
+}
 
 // OLD STYLES:
 

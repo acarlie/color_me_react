@@ -7,14 +7,14 @@ sans-serif;
 $g-font-family-heading: 'Oswald',
 sans-serif;
 
-$g-line-height-text: 1.5;
+$g-line-height-text: 1.25;
 $g-line-height-heading: 1.25;
 $g-font-weight-bold: 700;
 $g-font-weight-default: 400;
 
 $g-breakpoint-mobile: 360px;
 $g-breakpoint-tablet: 568px;
-$g-breakpoint-desktop: 992px;
+$g-breakpoint-laptop: 992px;
 
 $g-space-quarter: .25rem;
 $g-space-half: .5rem;
@@ -24,3 +24,5 @@ $g-space-two: 2rem;
 $g-space-three: 3rem;
 
 $g-focus-ring: 0 0 0 1px #000;
+
+$g-border-radius: .5rem;

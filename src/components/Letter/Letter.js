@@ -1,9 +1,10 @@
 import React from 'react';
-import styles from './Letter.module.scss';
+// import styles from './Letter.module.scss';
+import heading from './../../styles/modules/Heading.module.scss';
 
 function Letter(props) {
     return (
-        <span className={styles.letter} aria-label={props.guessed ? null : 'blank'}>
+        <span className={heading.main} aria-label={props.guessed ? null : 'blank'}>
             {
                 props.guessed &&
                 props.letter
