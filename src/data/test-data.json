@@ -1,0 +1,16 @@
+{
+    "colors": [
+        {
+            "name": "seafoam",
+            "colorMain": "BDFFF3",
+            "colorTwo": "74,194,154",
+            "hint": "This color name is something you'd walk through at the beach."
+        },
+        {
+            "name": "magenta",
+            "colorMain": "f953c6",
+            "colorTwo": "185,29,115",
+            "hint": "The color is part of the acronym C M Y K."
+        }
+    ]
+}

@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 /**
  * Data
  */
-import { colors } from './data/colors.json';
+import { colors } from './data/test-data.json';
 
 /**
  * Components
@@ -48,7 +48,9 @@ class App extends Component {
         const { name, hint } = puzzlesArr[num];
         const puzzle = name.toLowerCase();
         const puzzleArr = [...new Set(puzzle.split(''))];
-        const remaining = puzzlesArr.filter(x => x.name !== puzzle.name);
+        console.log(puzzleArr);
+        const remaining = puzzlesArr.filter(x => x.name !== puzzle);
+        console.log(remaining);
         this.setState({
             puzzle,
             puzzleArr,
@@ -73,22 +75,32 @@ class App extends Component {
 
     finalWin = () => {
         // open win modal
+        this.modalRef.current.openDialog();
     }
 
     win = () => {
-        this.modalRef.current.openDialog();
         this.setState({
             wins: this.state.wins + 1
         });
         this.setPuzzle(this.state.puzzlesArr);
-        this.reset();
+        this.newGame();
     }
 
     lose = () => {
+        this.modalRef.current.openDialog();
         // game over modal (full screen modal)
     }
 
-    reset = () => {
+    resetGame = () => {
+        this.setState({
+            puzzlesArr: colors
+        }, () => {
+            this.newGame();
+            this.setPuzzle(this.state.puzzlesArr);
+        });
+    }
+
+    newGame = () => {
         this.setState({
             remaining: 5,
             incorrectArr: [],
@@ -104,20 +116,26 @@ class App extends Component {
         if (this.state.puzzleArr.includes(guess)) {
             const correctArr = this.setUnique(guess, this.state.correctArr);
 
+            this.setState({
+                correctArr,
+                guess: ''
+            });
+
             if (correctArr.length === this.state.puzzleArr.length) {
-                this.win();
-            } else {
-                this.setState({
-                    correctArr,
-                    guess: ''
-                });
+                if (this.state.puzzlesArr.length === 0) {
+                    console.log('final win');
+                    this.finalWin();
+                } else {
+                    console.log('win');
+                    this.win();
+                }
             }
         } else {
             const incorrectArr = this.setUnique(guess, this.state.incorrectArr);
             const remaining = this.state.incorrectArr.includes(guess) ? this.state.remaining : this.state.remaining - 1;
 
             if (remaining === -1) {
-                console.log('Lose');
+                this.lose();
             } else {
                 this.setState({
                     remaining,
@@ -126,10 +144,6 @@ class App extends Component {
                 });
             }
         }
-    }
-
-    modalCloseHandler = () => {
-        console.log('Modal close');
     }
 
     render() {
@@ -146,7 +160,7 @@ class App extends Component {
                         </p>
                     </section>
                     <section>
-                        <Modal ref={this.modalRef} onClose={this.modalCloseHandler} title="Modal title" close="Close modal">
+                        <Modal ref={this.modalRef} onClose={this.resetGame} title="Modal title" close="Close modal">
                             Content
                         </Modal>
                         <h2 className={utility.sr_only}>The game</h2>
