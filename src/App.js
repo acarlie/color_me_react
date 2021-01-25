@@ -16,6 +16,8 @@ import Letter from './components/Letter/Letter';
 import styles from './App.module.scss';
 import utility from './styles/modules/Utility.module.scss';
 import heading from './styles/modules/Heading.module.scss';
+import grid from './styles/modules/Grid.module.scss';
+
 import Modal from './components/Modal/Modal';
 // import text from './styles/modules/Text.module.scss';
 
@@ -208,36 +210,39 @@ class App extends Component {
 
                         </div> */}
                         <div className={styles.wrapper}>
-                            <div className={styles.container}>
-                                <h3 className={heading.main} aria-live="polite" role="status">
-                                    <span className={styles.no_wrap}>
-                                        Color Me
-                                    </span>
-                                    <span className={styles.no_wrap}>
-                                        {
-                                            this.state.puzzle &&
-                                            this.state.puzzle.split('').map((letter, i) => {
-                                                return <Letter key={i} letter={letter} guessed={this.state.correctArr.includes(letter)} />;
-                                            })
-                                        }
-                                    </span>
-                                    .
-                                </h3>
-                                <form onSubmit={(e) => this.onFormSubmit(e)}>
-                                    <label className={utility.sr_only} for="input">Guess a letter</label>
-                                    <input id="input" className={styles.input} type="text" placeholder="Guess a letter..." maxlength="1" value={this.state.guess} onChange={this.handleChange} />
-                                    <input className={utility.sr_only} type="submit" value="Submit guess" />
-                                </form>
-
-                                <div className={styles.results}>
-                                    <p><strong>Guesses Remaining: </strong>{this.state.remaining}</p>
-                                    <p><strong>Wins: </strong>{this.state.wins}</p>
-                                    <p><strong>Guesses: </strong>
+                            <div className={grid.container}>
+                                <div className={grid.heading}>
+                                    <h3 className={heading.main} aria-live="polite" role="status">
+                                        <span className={styles.title}>Color Me</span>
+                                        <span className={styles.title}>
+                                            {
+                                                this.state.puzzle &&
+                                                this.state.puzzle.split('').map((letter, i) => {
+                                                    return <Letter key={i} letter={letter} guessed={this.state.correctArr.includes(letter)} />;
+                                                })
+                                            }
+                                            .
+                                        </span>
+                                    </h3>
+                                </div>
+                                <div className={grid.form}>
+                                    <form onSubmit={(e) => this.onFormSubmit(e)} className={styles.form}>
+                                        <label className={utility.sr_only} for="input">Guess a letter</label>
+                                        <input id="input" className={styles.input} type="text" placeholder="Guess a letter..." maxlength="1" value={this.state.guess} onChange={this.handleChange} />
+                                        <input className={utility.sr_only} type="submit" value="Submit guess" />
+                                    </form>
+                                    <div className={styles.guesses}>
+                                        <h4 className={utility.sr_only}>Guesses:</h4>
                                         {
                                             this.state.incorrectArr.length > 0 &&
                                             this.state.incorrectArr.join(' ')
                                         }
-                                    </p>
+                                    </div>
+                                </div>
+
+                                <div className={grid.results}>
+                                    <div><h4 className={`${heading.small} ${heading.inline}`}>Guesses Remaining: </h4> {this.state.remaining}</div>
+                                    <div><h4 className={`${heading.small} ${heading.inline}`}>Wins: </h4> {this.state.wins}</div>
                                 </div>
                             </div>
                         </div>

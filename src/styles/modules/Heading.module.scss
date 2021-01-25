@@ -9,4 +9,9 @@
 
 .small {
     @include heading-5;
+    font-weight: $g-font-weight-bold;
+}
+
+.inline {
+    display: inline-block;
 }

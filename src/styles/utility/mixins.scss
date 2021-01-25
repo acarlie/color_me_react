@@ -26,6 +26,38 @@
     }
 }
 
+@mixin mobile {
+    @media (min-width: #{$g-breakpoint-mobile}) {
+        @content;
+    }
+}
+
+@mixin mobile-only {
+    @media (min-width: #{$g-breakpoint-mobile}) and (max-width: #{$g-breakpoint-tablet - 1px}) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media (min-width: #{$g-breakpoint-tablet}) {
+        @content;
+    }
+}
+
+@mixin tablet-only {
+    @media (min-width: #{$g-breakpoint-tablet}) and (max-width: #{$g-breakpoint-desktop - 1px}) {
+        @content;
+    }
+}
+
+@mixin desktop {
+
+    @media (min-width: #{$g-breakpoint-desktop}),
+    print {
+        @content;
+    }
+}
+
 @mixin focus-reset {
     border: none;
     box-shadow: none;
@@ -91,4 +123,12 @@
 @mixin heading-6 {
     @include heading;
     font-size: .875rem;
+}
+
+@mixin space-children($space) {
+    >* {
+        &:not(:first-child) {
+            margin: $space 0 0 0;
+        }
+    }
 }

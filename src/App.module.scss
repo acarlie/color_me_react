@@ -3,7 +3,7 @@
 @import './styles/utility/reset.scss';
 
 html {
-    @include fluid-type($g-breakpoint-mobile, $g-breakpoint-laptop, 14px, 18px);
+    @include fluid-type($g-breakpoint-mobile, $g-breakpoint-desktop, 14px, 18px);
     scroll-behavior: smooth;
 }
 
@@ -25,15 +25,23 @@ body {
     min-height: 100vh;
     padding: $g-space-one;
 
-    @media screen and (min-width: $g-breakpoint-laptop),
-    print {
+
+    @include tablet {
         display: flex;
         align-items: center;
         justify-content: center;
     }
 }
 
-.container {}
+.guesses {
+    @include text-small;
+    text-transform: uppercase;
+    // &::before {
+    //     // Reserves area for text
+    //     content: 'content';
+    //     visibility: hidden;
+    // }
+}
 
 .input {
     @include text-medium;
@@ -44,8 +52,16 @@ body {
     border: 1px solid black;
 }
 
-.no_wrap {
-    white-space: nowrap;
+.title {
+    display: block;
+
+    &:first-of-type {
+        margin-right: .75rem;
+    }
+
+    @include mobile {
+        display: inline-block;
+    }
 }
 
 // OLD STYLES:

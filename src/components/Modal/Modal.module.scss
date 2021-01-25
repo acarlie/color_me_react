@@ -1,3 +1,6 @@
+@import './../../styles/utility/variables.scss';
+@import './../../styles/utility/mixins.scss';
+
 .modal {
     overflow: hidden;
     position: absolute;
@@ -10,18 +13,11 @@
     width: 90%;
     min-height: 12rem;
 
-    @media screen and (min-width: 512px),
-    print {
+    @include tablet-only {
         max-width: 50%;
     }
 
-    @media screen and (min-width: 768px),
-    print {
-        max-width: 40%;
-    }
-
-    @media screen and (min-width: 960px),
-    print {
+    @include desktop {
         max-width: 30%;
     }
 }

@@ -1,0 +1,5 @@
+.letter {
+    &:first-child {
+        text-transform: uppercase;
+    }
+}

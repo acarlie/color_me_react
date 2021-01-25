@@ -1,0 +1,18 @@
+@import './../utility/variables.scss';
+@import './../utility/mixins.scss';
+
+.container {
+    @include space-children($g-space-one);
+}
+
+.heading {
+    @include space-children($g-space-half);
+}
+
+.results {
+    @include space-children($g-space-half);
+}
+
+.form {
+    @include space-children($g-space-half);
+}
