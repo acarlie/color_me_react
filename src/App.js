@@ -244,7 +244,7 @@ class App extends Component {
                                 <div className={grid.form}>
                                     <form onSubmit={(e) => this.onFormSubmit(e)} className={styles.form}>
                                         <label className={utility.sr_only} htmlFor="input">Guess a letter</label>
-                                        <input id="input" className={styles.input} style={dynamicStyles.inset} placeholderStyle={{ color: '#000000' }} type="text" placeholder="Guess a letter..." maxLength="1" value={this.state.guess} onChange={this.handleChange} />
+                                        <input id="input" className={styles.input} style={dynamicStyles.inset} type="text" placeholder="Guess a letter..." maxLength="1" value={this.state.guess} onChange={this.handleChange} />
                                         <input className={utility.sr_only} type="submit" value="Submit guess" />
                                     </form>
                                     <div className={styles.guesses}>
