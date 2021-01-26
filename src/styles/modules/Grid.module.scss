@@ -2,17 +2,43 @@
 @import './../utility/mixins.scss';
 
 .container {
-    @include space-children($g-space-one);
+    display: grid;
+    grid-template-rows: auto 30vh auto;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+        "stats"
+        "heading"
+        "form";
+    row-gap: $g-space-two;
+
+    @include tablet {
+        display: block;
+        @include space-children($g-space-one);
+    }
+
 }
 
 .heading {
-    @include space-children($g-space-half);
+    grid-area: heading;
+    align-self: end;
+
+    @include tablet {
+        @include space-children($g-space-half);
+    }
 }
 
-.results {
-    @include space-children($g-space-half);
+.stats {
+    grid-area: stats;
+    display: flex;
+    justify-content: space-between;
+    border-radius: $g-border-radius;
+
+    @include tablet {
+        display: block;
+    }
 }
 
 .form {
-    @include space-children($g-space-half);
+    grid-area: form;
+    @include space-children($g-space-one);
 }

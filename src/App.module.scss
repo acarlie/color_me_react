@@ -23,7 +23,7 @@ body {
 
 .wrapper {
     min-height: 100vh;
-    padding: $g-space-one;
+    padding: $g-space-two;
 
 
     @include tablet {
@@ -36,20 +36,35 @@ body {
 .guesses {
     @include text-small;
     text-transform: uppercase;
-    // &::before {
+    // &::after {
     //     // Reserves area for text
     //     content: 'content';
     //     visibility: hidden;
     // }
 }
 
+// input:-webkit-autofill,
+// input:-webkit-autofill:hover,
+// input:-webkit-autofill:focus,
+// input:-webkit-autofill:active {
+//     // -webkit-box-shadow: 0 0 0 5px rgba(0, 0, 0, .15) !important;
+//     // box-shadow: black;
+// }
+
 .input {
     @include text-medium;
     display: block;
     width: 100%;
     border-radius: $g-border-radius;
-    padding: $g-space-half;
-    border: 1px solid black;
+    padding: $g-space-one;
+
+    &:focus {
+        background: none;
+        background-color: none;
+
+    }
+
+    // border: 1px solid black;
 }
 
 .title {
@@ -61,6 +76,16 @@ body {
 
     @include mobile {
         display: inline-block;
+    }
+}
+
+.stat {
+    padding: $g-space-one;
+
+    @include tablet {
+        &:not(:first-child) {
+            border-top: 1.5px solid rgba(0, 0, 0, .1);
+        }
     }
 }
 

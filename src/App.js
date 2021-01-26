@@ -69,14 +69,15 @@ class App extends Component {
         return { puzzle, puzzleArr, puzzlesArr, hint, colors };
     }
 
-    // colorChange (color, change) {
-    //     var oldColorRGB = color.split(',');
-    //     var newColorRGB = [];
-    //     oldColorRGB.forEach(function (i) {
-    //       newColorRGB.push(Math.round(parseInt(i) * change));
-    //     });
-    //     return 'rgb(' + newColorRGB.toString() + ')';
-    //   },
+    adjustRGB = (colorStr, change) => {
+        const oldColorRGB = colorStr.split(',');
+        const newColorRGB = [];
+        oldColorRGB.forEach(function (i) {
+            newColorRGB.push(Math.round(parseInt(i) * change));
+        });
+        return 'rgb(' + newColorRGB.toString() + ')';
+    }
+
     //   styles (colorOne, colorTwo, colorThree, colorFour) {
     //     // main background
     //     this.body.style.background = 'linear-gradient(to right,' + colorOne + ',' + colorTwo + ')';
@@ -169,12 +170,27 @@ class App extends Component {
     }
 
     render() {
+        console.log(this.state.colors.colorTwo);
+        // console.log(this.adjustRGB(this.state.colors.colorTwo, 0.6));
+        const dynamicStyles = {
+            background: { background: `linear-gradient(to right, rgb(${this.state.colors.colorMain}), rgb(${this.state.colors.colorTwo}))` },
+            heading: { textShadow: `2px 4px 8px ${this.state.colors.colorTwo ? this.adjustRGB(this.state.colors.colorTwo, 0.8) : 'rgb(' + this.state.colors.colorTwo + ')'}` },
+            inset: {
+                boxShadow: `1px 3px 16px rgb(${this.state.colors.colorTwo}) inset, -2px -2px 8px rgb(${this.state.colors.colorMain}), 2px 1px 2px rgb(${this.state.colors.colorMain})`,
+                background: `rgba(${this.state.colors.colorTwo}, .25)`,
+                color: this.state.colors.colorTwo ? this.adjustRGB(this.state.colors.colorTwo, 0.5) : 'rgba(0,0,0,.6)'
+            },
+            divider: {
+                borderTop: `1.5px solid rgb(${this.state.colors.colorTwo})`
+            }
+        };
+
         return (
             <div>
                 <header className={utility.sr_only}>
                     <h1>Color me</h1>
                 </header>
-                <main className={styles.main}>
+                <main className={styles.main} style={{ ...dynamicStyles.background }}>
                     <section className={utility.sr_only}>
                         <h2>About color me</h2>
                         <p>
@@ -212,7 +228,7 @@ class App extends Component {
                         <div className={styles.wrapper}>
                             <div className={grid.container}>
                                 <div className={grid.heading}>
-                                    <h3 className={heading.main} aria-live="polite" role="status">
+                                    <h3 className={heading.main} style={dynamicStyles.heading} aria-live="polite" role="status">
                                         <span className={styles.title}>Color Me</span>
                                         <span className={styles.title}>
                                             {
@@ -227,12 +243,12 @@ class App extends Component {
                                 </div>
                                 <div className={grid.form}>
                                     <form onSubmit={(e) => this.onFormSubmit(e)} className={styles.form}>
-                                        <label className={utility.sr_only} for="input">Guess a letter</label>
-                                        <input id="input" className={styles.input} type="text" placeholder="Guess a letter..." maxlength="1" value={this.state.guess} onChange={this.handleChange} />
+                                        <label className={utility.sr_only} htmlFor="input">Guess a letter</label>
+                                        <input id="input" className={styles.input} style={dynamicStyles.inset} placeholderStyle={{ color: '#000000' }} type="text" placeholder="Guess a letter..." maxLength="1" value={this.state.guess} onChange={this.handleChange} />
                                         <input className={utility.sr_only} type="submit" value="Submit guess" />
                                     </form>
                                     <div className={styles.guesses}>
-                                        <h4 className={utility.sr_only}>Guesses:</h4>
+                                        <h4 className={utility.sr_only} style={{ color: dynamicStyles.inset.color }}>Guessed letters:</h4>
                                         {
                                             this.state.incorrectArr.length > 0 &&
                                             this.state.incorrectArr.join(' ')
@@ -240,9 +256,9 @@ class App extends Component {
                                     </div>
                                 </div>
 
-                                <div className={grid.results}>
-                                    <div><h4 className={`${heading.small} ${heading.inline}`}>Guesses Remaining: </h4> {this.state.remaining}</div>
-                                    <div><h4 className={`${heading.small} ${heading.inline}`}>Wins: </h4> {this.state.wins}</div>
+                                <div className={grid.stats} style={dynamicStyles.inset}>
+                                    <div className={styles.stat}><h4 className={`${heading.small} ${heading.inline}`}>Guesses: </h4> {this.state.remaining}/5</div>
+                                    <div className={styles.stat}><h4 className={`${heading.small} ${heading.inline}`}>Wins: </h4> {this.state.wins}</div>
                                 </div>
                             </div>
                         </div>

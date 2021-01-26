@@ -33,7 +33,7 @@
 }
 
 @mixin mobile-only {
-    @media (min-width: #{$g-breakpoint-mobile}) and (max-width: #{$g-breakpoint-tablet - 1px}) {
+    @media (max-width: #{$g-breakpoint-tablet - 1px}) {
         @content;
     }
 }
@@ -97,7 +97,7 @@
 
 @mixin heading-1 {
     @include heading;
-    font-size: 3rem;
+    font-size: 4rem;
 }
 
 @mixin heading-2 {

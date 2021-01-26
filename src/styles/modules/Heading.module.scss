@@ -1,10 +1,11 @@
 @import './../utility/variables.scss';
 @import './../utility/mixins.scss';
 
+
 .main {
     @include heading-1;
-    // color: $g-color-neutral-light;
     letter-spacing: 2px;
+    color: $g-color-text;
 }
 
 .small {
