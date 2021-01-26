@@ -1,0 +1,30 @@
+@import './../../styles/utility/variables.scss';
+@import './../../styles/utility/mixins.scss';
+
+::-webkit-input-placeholder {
+    color: var(--dynamic-color-dark);
+}
+
+::-moz-placeholder {
+    color: var(--dynamic-color-dark);
+}
+
+::placeholder {
+    color: var(--dynamic-color-dark);
+}
+
+.input {
+    @include text-medium;
+    display: block;
+    width: 100%;
+    padding: $g-space-one;
+    border-radius: $g-border-radius;
+
+    &:focus {
+        box-shadow: 0 0 0 2px var(--dynamic-color-dark) inset;
+    }
+}
+
+.inset {
+    border-radius: $g-border-radius;
+}

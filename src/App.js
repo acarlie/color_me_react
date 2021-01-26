@@ -8,18 +8,15 @@ import { colors } from './data/test-data.json';
 /**
  * Components
  */
-import Letter from './components/Letter/Letter';
+import Modal from './components/Modal/Modal';
+import Game from './components/Game/Game';
+import Form from './components/Form/Form';
 
 /**
  * Styles
  */
 import styles from './App.module.scss';
 import utility from './styles/modules/Utility.module.scss';
-import heading from './styles/modules/Heading.module.scss';
-import grid from './styles/modules/Grid.module.scss';
-
-import Modal from './components/Modal/Modal';
-// import text from './styles/modules/Text.module.scss';
 
 class App extends Component {
     constructor(props) {
@@ -33,7 +30,6 @@ class App extends Component {
             incorrectArr: [],
             correctArr: [],
             wins: 0,
-            guess: '',
             puzzle: '',
             colors: {},
             puzzleArr: [],
@@ -78,21 +74,6 @@ class App extends Component {
         return 'rgb(' + newColorRGB.toString() + ')';
     }
 
-    //   styles (colorOne, colorTwo, colorThree, colorFour) {
-    //     // main background
-    //     this.body.style.background = 'linear-gradient(to right,' + colorOne + ',' + colorTwo + ')';
-    //     // h1 text shadow
-    //     this.headingText.style.textShadow = '2px 4px 6px ' + colorTwo;
-    //     // result container
-    //     this.resultsCont.style.boxShadow = '1px 3px 16px ' + colorTwo + ' inset, -2px -2px 8px ' + colorOne + ', 2px 1px 2px ' + colorOne;
-    //     this.resultsCont.style.color = colorFour;
-    //     this.resultsCont.style.backgroundColor = colorThree;
-    //     // borders in result container
-    //     this.border.forEach(function (i) {
-    //       i.style.borderTop = '1.5px solid ' + colorTwo;
-    //     });
-    //   },
-
     setUnique = (guess, arr) => {
         if (!arr.includes(guess)) {
             return arr.concat(guess);
@@ -134,16 +115,12 @@ class App extends Component {
         });
     }
 
-    onFormSubmit = (e) => {
-        e.preventDefault();
-        const { guess } = this.state;
-
+    onFormSubmit = (guess) => {
         if (this.state.puzzleArr.includes(guess)) {
             const correctArr = this.setUnique(guess, this.state.correctArr);
 
             this.setState({
-                correctArr,
-                guess: ''
+                correctArr
             });
 
             if (correctArr.length === this.state.puzzleArr.length) {
@@ -162,23 +139,21 @@ class App extends Component {
             } else {
                 this.setState({
                     remaining,
-                    incorrectArr,
-                    guess: ''
+                    incorrectArr
                 });
             }
         }
     }
 
     render() {
-        console.log(this.state.colors.colorTwo);
-        // console.log(this.adjustRGB(this.state.colors.colorTwo, 0.6));
         const dynamicStyles = {
             background: { background: `linear-gradient(to right, rgb(${this.state.colors.colorMain}), rgb(${this.state.colors.colorTwo}))` },
             heading: { textShadow: `2px 4px 8px ${this.state.colors.colorTwo ? this.adjustRGB(this.state.colors.colorTwo, 0.8) : 'rgb(' + this.state.colors.colorTwo + ')'}` },
             inset: {
                 boxShadow: `1px 3px 16px rgb(${this.state.colors.colorTwo}) inset, -2px -2px 8px rgb(${this.state.colors.colorMain}), 2px 1px 2px rgb(${this.state.colors.colorMain})`,
                 background: `rgba(${this.state.colors.colorTwo}, .25)`,
-                color: this.state.colors.colorTwo ? this.adjustRGB(this.state.colors.colorTwo, 0.5) : 'rgba(0,0,0,.6)'
+                color: this.state.colors.colorTwo ? this.adjustRGB(this.state.colors.colorTwo, 0.5) : 'rgba(0,0,0,.6)',
+                '--dynamic-color-dark': this.state.colors.colorTwo ? this.adjustRGB(this.state.colors.colorTwo, 0.5) : 'rgba(0,0,0,.6)'
             },
             divider: {
                 borderTop: `1.5px solid rgb(${this.state.colors.colorTwo})`
@@ -225,43 +200,15 @@ class App extends Component {
                         <div id="finalWrapper" class="fixed-wrap">
 
                         </div> */}
-                        <div className={styles.wrapper}>
-                            <div className={grid.container}>
-                                <div className={grid.heading}>
-                                    <h3 className={heading.main} style={dynamicStyles.heading} aria-live="polite" role="status">
-                                        <span className={styles.title}>Color Me</span>
-                                        <span className={styles.title}>
-                                            {
-                                                this.state.puzzle &&
-                                                this.state.puzzle.split('').map((letter, i) => {
-                                                    return <Letter key={i} letter={letter} guessed={this.state.correctArr.includes(letter)} />;
-                                                })
-                                            }
-                                            .
-                                        </span>
-                                    </h3>
-                                </div>
-                                <div className={grid.form}>
-                                    <form onSubmit={(e) => this.onFormSubmit(e)} className={styles.form}>
-                                        <label className={utility.sr_only} htmlFor="input">Guess a letter</label>
-                                        <input id="input" className={styles.input} style={dynamicStyles.inset} type="text" placeholder="Guess a letter..." maxLength="1" value={this.state.guess} onChange={this.handleChange} />
-                                        <input className={utility.sr_only} type="submit" value="Submit guess" />
-                                    </form>
-                                    <div className={styles.guesses}>
-                                        <h4 className={utility.sr_only} style={{ color: dynamicStyles.inset.color }}>Guessed letters:</h4>
-                                        {
-                                            this.state.incorrectArr.length > 0 &&
-                                            this.state.incorrectArr.join(' ')
-                                        }
-                                    </div>
-                                </div>
-
-                                <div className={grid.stats} style={dynamicStyles.inset}>
-                                    <div className={styles.stat}><h4 className={`${heading.small} ${heading.inline}`}>Guesses: </h4> {this.state.remaining}/5</div>
-                                    <div className={styles.stat}><h4 className={`${heading.small} ${heading.inline}`}>Wins: </h4> {this.state.wins}</div>
-                                </div>
-                            </div>
-                        </div>
+                        <Game
+                            dynamicStyles={dynamicStyles}
+                            puzzle={this.state.puzzle}
+                            incorrectArr={this.state.incorrectArr}
+                            correctArr={this.state.correctArr}
+                            wins={this.state.wins}
+                            remaining={this.state.remaining}>
+                            <Form submitHandler={this.onFormSubmit} dynamicStyles={dynamicStyles}></Form>
+                        </Game>
 
                     </section>
                 </main>

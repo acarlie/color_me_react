@@ -1,0 +1,41 @@
+@import './../../styles/utility/variables.scss';
+@import './../../styles/utility/mixins.scss';
+
+.wrapper {
+    min-height: 100vh;
+    padding: $g-space-two;
+
+
+    @include tablet {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+.guesses {
+    @include text-small;
+    text-transform: uppercase;
+}
+
+.title {
+    display: block;
+
+    &:first-of-type {
+        margin-right: .75rem;
+    }
+
+    @include mobile {
+        display: inline-block;
+    }
+}
+
+.stat {
+    padding: $g-space-one;
+
+    @include tablet {
+        &:not(:first-child) {
+            border-top: 1.5px solid rgba(0, 0, 0, .1);
+        }
+    }
+}

@@ -13,8 +13,17 @@ body {
     line-height: $g-line-height-text;
 }
 
-.main {
-    color: black;
+// This vanilla CSS variable will be set dynamically
+::-webkit-input-placeholder {
+    color: var(--dynamic-color-dark);
+}
+
+::-moz-placeholder {
+    color: var(--dynamic-color-dark);
+}
+
+::placeholder {
+    color: var(--dynamic-color-dark);
 }
 
 * {
@@ -42,14 +51,6 @@ body {
     //     visibility: hidden;
     // }
 }
-
-// input:-webkit-autofill,
-// input:-webkit-autofill:hover,
-// input:-webkit-autofill:focus,
-// input:-webkit-autofill:active {
-//     // -webkit-box-shadow: 0 0 0 5px rgba(0, 0, 0, .15) !important;
-//     // box-shadow: black;
-// }
 
 .input {
     @include text-medium;
